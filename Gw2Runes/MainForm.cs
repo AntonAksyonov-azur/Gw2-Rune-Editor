@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using AndaForceUtils.Math;
+using Gw2Runes.Properties;
 
 namespace Gw2Runes
 {
@@ -101,7 +102,7 @@ namespace Gw2Runes
 
                 imageResult.Save(
                     saveFileDialog.FileName,
-                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex-1]);
+                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex - 1]);
             }
         }
 
@@ -123,7 +124,8 @@ namespace Gw2Runes
             Text = String.Format(
                 "{0}, Version: {1}.{2}",
                 Assembly.GetExecutingAssembly().GetName().Name,
-                Assembly.GetExecutingAssembly().GetName().Version.Major, Assembly.GetExecutingAssembly().GetName().Version.Minor);
+                Assembly.GetExecutingAssembly().GetName().Version.Major,
+                Assembly.GetExecutingAssembly().GetName().Version.Minor);
         }
 
         private void LoadDefaulValues()
@@ -133,8 +135,8 @@ namespace Gw2Runes
 
         private void LoadResources()
         {
-            _background = Properties.Resources.background;
-            _rune = Properties.Resources.rune;
+            _background = Resources.background;
+            _rune = Resources.rune;
 
             LoadFontFromResources();
 //            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz_Quadrata_Cyrillic_Regular.ttf");
