@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using AndaForceUtils.Math;
 
@@ -29,7 +31,7 @@ namespace Gw2Runes
         private Image _background;
         private Image _rune;
 
-        private PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
         private Font _captionFont;
         private Font _textFont;
         private SolidBrush _captionBrush = new SolidBrush(Color.FromArgb(220, 158, 37));
@@ -63,12 +65,34 @@ namespace Gw2Runes
 
         private void LoadResources()
         {
-            _background = Image.FromFile(@"Resources\images\Background\background.png");
-            _rune = Image.FromFile(@"Resources\Images\Runes\rune.jpg");
+            _background = Properties.Resources.background;
+            _rune = Properties.Resources.rune;
 
-            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz Quadrata Cyrillic Regular.ttf");
+            LoadFontFromResources();
+//            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz_Quadrata_Cyrillic_Regular.ttf");
+
             _captionFont = new Font(_privateFontCollection.Families.First().Name, 18.0f, GraphicsUnit.Pixel);
             _textFont = new Font(_privateFontCollection.Families.First().Name, 16.0f, GraphicsUnit.Pixel);
+
+//            _background = Image.FromFile(@"Resources\images\Background\background.png");
+//            _rune = Image.FromFile(@"Resources\Images\Runes\rune.jpg");
+        }
+
+        private void LoadFontFromResources()
+        {
+            const string resourceFontName = "Gw2Runes.Resources.Fonts.Fritz_Quadrata_Cyrillic_Regular.ttf";
+            Stream fontStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceFontName);
+
+            IntPtr data = Marshal.AllocCoTaskMem((int) fontStream.Length);
+            var fontdata = new byte[fontStream.Length];
+            fontStream.Read(fontdata, 0, (int) fontStream.Length);
+
+            Marshal.Copy(fontdata, 0, data, (int) fontStream.Length);
+
+            _privateFontCollection.AddMemoryFont(data, (int) fontStream.Length);
+
+            fontStream.Close();
+            Marshal.FreeCoTaskMem(data);
         }
 
         private void DrawPreview(Graphics e)
@@ -163,6 +187,11 @@ namespace Gw2Runes
                     saveFileDialog.FileName,
                     new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex]);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadFontFromResources();
         }
     }
 }
