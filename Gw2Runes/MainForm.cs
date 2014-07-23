@@ -141,8 +141,9 @@ namespace Gw2Runes
             LoadFontFromResources();
 //            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz_Quadrata_Cyrillic_Regular.ttf");
 
-            _captionFont = new Font(_privateFontCollection.Families.First().Name, 18.0f, GraphicsUnit.Pixel);
-            _textFont = new Font(_privateFontCollection.Families.First().Name, 16.0f, GraphicsUnit.Pixel);
+            var fnt = _privateFontCollection.Families.First();
+            _captionFont = new Font(fnt, 18.0f, GraphicsUnit.Pixel);
+            _textFont = new Font(fnt, 16.0f, GraphicsUnit.Pixel);
 
 //            _background = Image.FromFile(@"Resources\images\Background\background.png");
 //            _rune = Image.FromFile(@"Resources\Images\Runes\rune.jpg");

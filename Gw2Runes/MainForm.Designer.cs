@@ -40,6 +40,7 @@
             this.tbRuneText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,7 +78,7 @@
             // 
             // tbCaption
             // 
-            this.tbCaption.Location = new System.Drawing.Point(6, 32);
+            this.tbCaption.Location = new System.Drawing.Point(9, 32);
             this.tbCaption.Name = "tbCaption";
             this.tbCaption.Size = new System.Drawing.Size(135, 20);
             this.tbCaption.TabIndex = 3;
@@ -95,14 +96,14 @@
             this.groupBox2.Controls.Add(this.btnSaveAs);
             this.groupBox2.Location = new System.Drawing.Point(393, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 390);
+            this.groupBox2.Size = new System.Drawing.Size(228, 398);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Content";
             // 
             // btnTextColor
             // 
-            this.btnTextColor.Location = new System.Drawing.Point(6, 361);
+            this.btnTextColor.Location = new System.Drawing.Point(9, 361);
             this.btnTextColor.Name = "btnTextColor";
             this.btnTextColor.Size = new System.Drawing.Size(75, 23);
             this.btnTextColor.TabIndex = 8;
@@ -131,7 +132,7 @@
             // 
             // tbRuneText
             // 
-            this.tbRuneText.Location = new System.Drawing.Point(6, 71);
+            this.tbRuneText.Location = new System.Drawing.Point(9, 71);
             this.tbRuneText.Multiline = true;
             this.tbRuneText.Name = "tbRuneText";
             this.tbRuneText.Size = new System.Drawing.Size(216, 284);
@@ -152,14 +153,23 @@
             // 
             this.saveFileDialog.DefaultExt = "jpg";
             this.saveFileDialog.Filter = "Jpeg complessed images (low size)|*.jpg|Png truecolor images (high quality)|*.png" +
-                "";
+    "";
             this.saveFileDialog.FilterIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(417, 454);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 657);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -188,6 +198,7 @@
         private System.Windows.Forms.Button btnCaptionColor;
         private System.Windows.Forms.Button btnTextColor;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
