@@ -59,6 +59,66 @@ namespace Gw2Runes
             DrawPreview(e.Graphics);
         }
 
+
+        private void tbText_TextChanged(object sender, EventArgs e)
+        {
+            _runeTextString = tbRuneText.Text;
+
+            pBox.Refresh();
+        }
+
+        #endregion
+
+        #region Button Events
+
+        private void btnCaptionColor_Click(object sender, EventArgs e)
+        {
+            ChangeBrushColorViaDialog(ref _captionBrush);
+        }
+
+        private void btnTextColor_Click(object sender, EventArgs e)
+        {
+            ChangeBrushColorViaDialog(ref _textBrush);
+        }
+
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.FileName = tbCaption.Text;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var pBoxImage = new Bitmap(BackgroundWidth, BackgroundHeight);
+                var workingGraphics = Graphics.FromImage(pBoxImage);
+
+                // Height of entered text + 90px rune icon and caption + 60px for empty space under
+                var resultHeight =
+                    (int) MathHelper.Clamp(
+                        workingGraphics.MeasureString(_runeTextString, _textFont).Height + 90 + 60,
+                        0,
+                        BackgroundHeight);
+
+                DrawPreview(Graphics.FromImage(pBoxImage));
+
+                var imageResult = new Bitmap(BackgroundWidth, resultHeight);
+                workingGraphics = Graphics.FromImage(imageResult);
+                workingGraphics.DrawImage(pBoxImage, 0, 0);
+                workingGraphics.DrawRectangle(new Pen(Color.Black, 2), 0, 0, imageResult.Width - 1,
+                    imageResult.Height - 1);
+
+                imageResult.Save(
+                    saveFileDialog.FileName,
+                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex]);
+            }
+        }
+
+        #endregion
+
+        #region Universal Events
+
+        private void RefreshPictureBox(object sender, EventArgs e)
+        {
+            pBox.Refresh();
+        }
+
         #endregion
 
         #region Private Methods
@@ -117,21 +177,11 @@ namespace Gw2Runes
 
         #endregion
 
-        #region Buttons
-
-        private void btnCaptionColor_Click(object sender, EventArgs e)
-        {
-            ChangeBrushColorViaDialog(ref _captionBrush);
-        }
-
-        private void btnTextColor_Click(object sender, EventArgs e)
-        {
-            ChangeBrushColorViaDialog(ref _textBrush);
-        }
+        #region Extracted Methods
 
         private void ChangeBrushColorViaDialog(ref SolidBrush brush)
         {
-            using (var colorDialog = new ColorDialog() {AllowFullOpen = true, Color = _captionBrush.Color})
+            using (var colorDialog = new ColorDialog {AllowFullOpen = true, Color = _captionBrush.Color})
             {
                 if (colorDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -143,55 +193,5 @@ namespace Gw2Runes
         }
 
         #endregion
-
-        #region Universal Events
-
-        private void RefreshPictureBox(object sender, EventArgs e)
-        {
-            pBox.Refresh();
-        }
-
-        #endregion
-
-        private void tbText_TextChanged(object sender, EventArgs e)
-        {
-            _runeTextString = tbRuneText.Text;
-
-            pBox.Refresh();
-        }
-
-        private void btnSaveAs_Click(object sender, EventArgs e)
-        {
-            saveFileDialog.FileName = tbCaption.Text;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var pBoxImage = new Bitmap(BackgroundWidth, BackgroundHeight);
-                var workingGraphics = Graphics.FromImage(pBoxImage);
-
-                // Height of entered text + 90px rune icon and caption + 60px for empty space under
-                var resultHeight =
-                    (int) MathHelper.Clamp(
-                        workingGraphics.MeasureString(_runeTextString, _textFont).Height + 90 + 60,
-                        0,
-                        BackgroundHeight);
-
-                DrawPreview(Graphics.FromImage(pBoxImage));
-
-                var imageResult = new Bitmap(BackgroundWidth, resultHeight);
-                workingGraphics = Graphics.FromImage(imageResult);
-                workingGraphics.DrawImage(pBoxImage, 0, 0);
-                workingGraphics.DrawRectangle(new Pen(Color.Black, 2), 0, 0, imageResult.Width - 1,
-                    imageResult.Height - 1);
-
-                imageResult.Save(
-                    saveFileDialog.FileName,
-                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex]);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadFontFromResources();
-        }
     }
 }
