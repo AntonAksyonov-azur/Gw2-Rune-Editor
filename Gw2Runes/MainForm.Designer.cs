@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbRuneText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,6 +73,7 @@
             this.btnSaveAs.TabIndex = 2;
             this.btnSaveAs.Text = "Save As..";
             this.btnSaveAs.UseVisualStyleBackColor = true;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // tbCaption
             // 
@@ -146,6 +148,13 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Caption";
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "jpg";
+            this.saveFileDialog.Filter = "Jpeg complessed images (low size)|*.jpg|Png truecolor images (high quality)|*.png" +
+                "";
+            this.saveFileDialog.FilterIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +185,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCaptionColor;
         private System.Windows.Forms.Button btnTextColor;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

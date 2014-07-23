@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AndaForce Utility Classes Collection, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AndaForceUtils\AndaForceExtensions\bin\Debug\AndaForce Utility Classes Collection.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -80,6 +84,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AndaForce Utility Classes Collection.dll" />
     <Content Include="Resources\Images\Runes\rune.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

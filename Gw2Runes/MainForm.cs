@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
+using AndaForceUtils.Math;
 
 namespace Gw2Runes
 {
@@ -13,6 +16,13 @@ namespace Gw2Runes
         {
             InitializeComponent();
         }
+
+        #region Constants
+
+        private const int BackgroundWidth = 350;
+        private const int BackgroundHeight = 600;
+
+        #endregion
 
         #region Resource variables
 
@@ -126,5 +136,33 @@ namespace Gw2Runes
             pBox.Refresh();
         }
 
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.FileName = tbCaption.Text;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var pBoxImage = new Bitmap(BackgroundWidth, BackgroundHeight);
+                var workingGraphics = Graphics.FromImage(pBoxImage);
+
+                // Height of entered text + 90px rune icon and caption + 60px for empty space under
+                var resultHeight =
+                    (int) MathHelper.Clamp(
+                        workingGraphics.MeasureString(_runeTextString, _textFont).Height + 90 + 60,
+                        0,
+                        BackgroundHeight);
+
+                DrawPreview(Graphics.FromImage(pBoxImage));
+
+                var imageResult = new Bitmap(BackgroundWidth, resultHeight);
+                workingGraphics = Graphics.FromImage(imageResult);
+                workingGraphics.DrawImage(pBoxImage, 0, 0);
+                workingGraphics.DrawRectangle(new Pen(Color.Black, 2), 0, 0, imageResult.Width - 1,
+                    imageResult.Height - 1);
+
+                imageResult.Save(
+                    saveFileDialog.FileName,
+                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex]);
+            }
+        }
     }
 }
