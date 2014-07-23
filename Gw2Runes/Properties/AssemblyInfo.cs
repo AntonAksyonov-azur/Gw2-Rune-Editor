@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Gw2Runes")]
+[assembly: AssemblyTitle("Gw2 Rune Editor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DNA Project")]
-[assembly: AssemblyProduct("Gw2Runes")]
-[assembly: AssemblyCopyright("Copyright © DNA Project 2014")]
+[assembly: AssemblyCompany("AndaForce")]
+[assembly: AssemblyProduct("Gw2 Rune Editor")]
+[assembly: AssemblyCopyright("Copyright © AndaForce")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номер построения и номер редакции по умолчанию, 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]

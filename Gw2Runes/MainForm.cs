@@ -45,20 +45,15 @@ namespace Gw2Runes
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ShowVersionInfo();
             LoadResources();
             LoadDefaulValues();
-        }
-
-        private void LoadDefaulValues()
-        {
-            _runeTextString = tbRuneText.Text;
         }
 
         private void pBox_Paint(object sender, PaintEventArgs e)
         {
             DrawPreview(e.Graphics);
         }
-
 
         private void tbText_TextChanged(object sender, EventArgs e)
         {
@@ -122,6 +117,19 @@ namespace Gw2Runes
         #endregion
 
         #region Private Methods
+
+        private void ShowVersionInfo()
+        {
+            Text = String.Format(
+                "{0}, Version: {1}.{2}",
+                Assembly.GetExecutingAssembly().GetName().Name,
+                Assembly.GetExecutingAssembly().GetName().Version.Major, Assembly.GetExecutingAssembly().GetName().Version.Minor);
+        }
+
+        private void LoadDefaulValues()
+        {
+            _runeTextString = tbRuneText.Text;
+        }
 
         private void LoadResources()
         {
