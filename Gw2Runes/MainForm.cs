@@ -101,7 +101,7 @@ namespace Gw2Runes
 
                 imageResult.Save(
                     saveFileDialog.FileName,
-                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex]);
+                    new[] {ImageFormat.Jpeg, ImageFormat.Png}[saveFileDialog.FilterIndex-1]);
             }
         }
 
