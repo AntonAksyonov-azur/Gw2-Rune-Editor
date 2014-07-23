@@ -122,10 +122,12 @@ namespace Gw2Runes
         private void ShowVersionInfo()
         {
             Text = String.Format(
-                "{0}, Version: {1}.{2}",
+                "{0}, Version: {1}.{2}.{3}.{4}",
                 Assembly.GetExecutingAssembly().GetName().Name,
                 Assembly.GetExecutingAssembly().GetName().Version.Major,
-                Assembly.GetExecutingAssembly().GetName().Version.Minor);
+                Assembly.GetExecutingAssembly().GetName().Version.Minor,
+                Assembly.GetExecutingAssembly().GetName().Version.Build,
+                Assembly.GetExecutingAssembly().GetName().Version.Revision);
         }
 
         private void LoadDefaulValues()
