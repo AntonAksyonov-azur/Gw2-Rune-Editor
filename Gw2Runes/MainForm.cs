@@ -195,7 +195,7 @@ namespace Gw2Runes
         {
             _runeImage = (imageComboBox.SelectedItem as ImageComboBoxItem).Image;
             _captionBrush.Color = (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).Color;
-            _captionText = String.Format("{0} {1}",
+            _captionText = String.Format("{0}{1}",
                 (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).DataValue, tbCaption.Text);
 
             _runeTextString = tbRuneText.Text;
