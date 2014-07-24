@@ -30,16 +30,17 @@ namespace Gw2Runes
 
         #region Resource variables
 
-        private Image _background;
-        private Image _rune;
+        private Image _backgroundImage;
+        private Image _runeImage;
 
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
         private Font _captionFont;
         private Font _textFont;
-        private SolidBrush _captionBrush = new SolidBrush(Color.FromArgb(220, 158, 37));
-        private SolidBrush _textBrush = new SolidBrush(Color.FromArgb(156, 156, 156));
+        private readonly SolidBrush _captionBrush = new SolidBrush(Color.White);
+        private readonly SolidBrush _textBrush = new SolidBrush(Color.FromArgb(156, 156, 156));
 
         private String _runeTextString;
+        private string _captionText;
 
         #endregion
 
@@ -47,10 +48,10 @@ namespace Gw2Runes
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ShowVersionInfo();
-            LoadResources();
-            SetupComboBoxes();
-        }
+                ShowVersionInfo();
+                LoadResources();
+                SetupComboBoxes();
+            }
 
         private void pBox_Paint(object sender, PaintEventArgs e)
         {
@@ -58,27 +59,9 @@ namespace Gw2Runes
             DrawPreview(e.Graphics);
         }
 
-        private void UpdateContentsFromControls()
-        {
-            _rune = (imageComboBox.SelectedItem as ImageComboBoxItem).Image;
-
-            _runeTextString = tbRuneText.Text;
-            _captionBrush.Color = (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).Color;
-        }
-
         #endregion
 
         #region Button Events
-
-        private void btnCaptionColor_Click(object sender, EventArgs e)
-        {
-            ChangeBrushColorViaDialog(ref _captionBrush);
-        }
-
-        private void btnTextColor_Click(object sender, EventArgs e)
-        {
-            ChangeBrushColorViaDialog(ref _textBrush);
-        }
 
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
@@ -133,15 +116,10 @@ namespace Gw2Runes
                 Assembly.GetExecutingAssembly().GetName().Version.Revision);
         }
 
-        private void LoadDefaulValues()
-        {
-            _runeTextString = tbRuneText.Text;
-        }
-
         private void LoadResources()
         {
-            _background = Resources.background;
-            _rune = Resources.rune;
+            _backgroundImage = Resources.background;
+            _runeImage = Resources.rune;
 
             LoadFontFromResources();
 //            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz_Quadrata_Cyrillic_Regular.ttf");
@@ -150,8 +128,8 @@ namespace Gw2Runes
             _captionFont = new Font(fnt, 18.0f, GraphicsUnit.Pixel);
             _textFont = new Font(fnt, 16.0f, GraphicsUnit.Pixel);
 
-//            _background = Image.FromFile(@"Resources\images\Background\background.png");
-//            _rune = Image.FromFile(@"Resources\Images\Runes\rune.jpg");
+//            _backgroundImage = Image.FromFile(@"Resources\images\Background\background.png");
+//            _runeImage = Image.FromFile(@"Resources\Images\Runes\rune.jpg");
         }
 
         private void LoadFontFromResources()
@@ -186,14 +164,14 @@ namespace Gw2Runes
 
         private void DrawPreview(Graphics e)
         {
-            if (_background == null) return;
-            if (_rune == null) return;
+            if (_backgroundImage == null) return;
+            if (_runeImage == null) return;
 
             e.SmoothingMode = SmoothingMode.AntiAlias;
-            e.DrawImage(_background, new Point(0, 0));
-            e.DrawImage(_rune, new Point(12, 28));
+            e.DrawImage(_backgroundImage, new Point(0, 0));
+            e.DrawImage(_runeImage, new Point(12, 28));
             e.DrawString(
-                String.Format("{0} {1}", (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).DataValue, tbCaption.Text),
+                _captionText,
                 _captionFont,
                 _captionBrush,
                 new PointF(60, 44));
@@ -204,25 +182,16 @@ namespace Gw2Runes
                 new PointF(18, 88));
         }
 
-        #endregion
-
-        #region Extracted Methods
-
-        private void ChangeBrushColorViaDialog(ref SolidBrush brush)
+        private void UpdateContentsFromControls()
         {
-            using (var colorDialog = new ColorDialog {AllowFullOpen = true, Color = _captionBrush.Color})
-            {
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    brush = new SolidBrush(colorDialog.Color);
-                }
-            }
+            _runeImage = (imageComboBox.SelectedItem as ImageComboBoxItem).Image;
+            _captionBrush.Color = (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).Color;
+            _captionText = String.Format("{0} {1}",
+                (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).DataValue, tbCaption.Text);
 
-            pBox.Refresh();
+            _runeTextString = tbRuneText.Text;
         }
 
-        #endregion
-
-       
+        #endregion       
     }
 }
