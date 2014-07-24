@@ -7,8 +7,6 @@ namespace Gw2Runes.Components
 {
     public class ImageComboBox : ComboBox
     {
-        public ImageList ImageList { get; set; }
-
         public ImageComboBox()
         {
             DrawMode = DrawMode.OwnerDrawFixed;
@@ -17,15 +15,15 @@ namespace Gw2Runes.Components
 
         public void ApplyImageList(ImageList list)
         {
-            if (ImageList != null)
+            if (list != null)
             {
-                var result = ImageList.Images.Keys
+                var result = list.Images.Keys
                     .OfType<String>()
                     .OrderBy(a => a);
 
                 foreach (var imageKey in result)
                 {
-                    Items.Add(new ImageComboBoxItem(imageKey, ImageList.Images[imageKey]));
+                    Items.Add(new ImageComboBoxItem(imageKey, list.Images[imageKey]));
                 }
 
                 if (Items.Count > 0)
