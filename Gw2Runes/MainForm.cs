@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using AndaForceUtils.Math;
+using Gw2Runes.Components;
 using Gw2Runes.Properties;
 
 namespace Gw2Runes
@@ -49,6 +50,8 @@ namespace Gw2Runes
             ShowVersionInfo();
             LoadResources();
             LoadDefaulValues();
+            
+            SetupComboBoxes();
         }
 
         private void pBox_Paint(object sender, PaintEventArgs e)
@@ -59,6 +62,20 @@ namespace Gw2Runes
         private void tbText_TextChanged(object sender, EventArgs e)
         {
             _runeTextString = tbRuneText.Text;
+
+            pBox.Refresh();
+        }
+
+        private void imageComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _rune = (imageComboBox.SelectedItem as ImageComboBoxItem).Image;
+
+            pBox.Refresh();
+        }
+
+        private void colorSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _captionBrush.Color = (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).Color;
 
             pBox.Refresh();
         }
@@ -168,6 +185,19 @@ namespace Gw2Runes
             Marshal.FreeCoTaskMem(data);
         }
 
+        private void SetupComboBoxes()
+        {
+            imageComboBox.ApplyImageList(myImageList);
+
+            colorSelectionComboBox.Items.Add(
+                new ColorSelectionComboBoxItem("Superior", "Superior Rune of ", Color.FromArgb(220, 158, 37)));
+            colorSelectionComboBox.Items.Add(
+                new ColorSelectionComboBoxItem("Major", "Major Rune of ", Color.FromArgb(230, 230, 37)));
+            colorSelectionComboBox.Items.Add(
+                new ColorSelectionComboBoxItem("Minor", "Minor Rune of ", Color.FromArgb(140, 179, 62)));
+            colorSelectionComboBox.SelectedItem = colorSelectionComboBox.Items[0];
+        }
+
         private void DrawPreview(Graphics e)
         {
             if (_background == null) return;
@@ -177,7 +207,7 @@ namespace Gw2Runes
             e.DrawImage(_background, new Point(0, 0));
             e.DrawImage(_rune, new Point(12, 28));
             e.DrawString(
-                String.Format("Superior Rune of {0}", tbCaption.Text),
+                String.Format("{0} {1}", (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).DataValue, tbCaption.Text),
                 _captionFont,
                 _captionBrush,
                 new PointF(60, 44));
@@ -206,5 +236,7 @@ namespace Gw2Runes
         }
 
         #endregion
+
+       
     }
 }

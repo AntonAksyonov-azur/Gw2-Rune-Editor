@@ -22,7 +22,7 @@ namespace Gw2Runes.Components
                 var item = (ColorSelectionComboBoxItem) Items[e.Index];
 
                 e.Graphics.FillRectangle(new SolidBrush(item.Color), e.Bounds.Left, e.Bounds.Top, ItemHeight, ItemHeight);
-                e.Graphics.DrawString(item.Value, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + ItemHeight, e.Bounds.Top + 2);
+                e.Graphics.DrawString(item.DisplayName, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + ItemHeight, e.Bounds.Top + 2);
             }
 
             base.OnDrawItem(e);
@@ -31,18 +31,20 @@ namespace Gw2Runes.Components
 
     public sealed class ColorSelectionComboBoxItem
     {
-        public String Value;
+        public String DisplayName;
+        public String DataValue;
         public Color Color;
 
-        public ColorSelectionComboBoxItem(String val, Color color)
+        public ColorSelectionComboBoxItem(String displayName, String dataValue, Color color)
         {
-            Value = val;
+            DisplayName = displayName;
+            DataValue = dataValue;
             Color = color;
         }
 
         public override string ToString()
         {
-            return Value;
+            return DisplayName;
         }
     }
 }
