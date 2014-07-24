@@ -139,7 +139,7 @@ namespace Gw2Runes
             this.tbRuneText.Size = new System.Drawing.Size(216, 284);
             this.tbRuneText.TabIndex = 5;
             this.tbRuneText.Text = resources.GetString("tbRuneText.Text");
-            this.tbRuneText.TextChanged += new System.EventHandler(this.tbText_TextChanged);
+            this.tbRuneText.TextChanged += new System.EventHandler(this.RefreshPictureBox);
             // 
             // label1
             // 
@@ -166,7 +166,7 @@ namespace Gw2Runes
             this.colorSelectionComboBox.Name = "colorSelectionComboBox";
             this.colorSelectionComboBox.Size = new System.Drawing.Size(100, 21);
             this.colorSelectionComboBox.TabIndex = 8;
-            this.colorSelectionComboBox.SelectedIndexChanged += new System.EventHandler(this.colorSelectionComboBox_SelectedIndexChanged);
+            this.colorSelectionComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
             // 
             // imageComboBox
             // 
@@ -179,7 +179,7 @@ namespace Gw2Runes
             this.imageComboBox.Name = "imageComboBox";
             this.imageComboBox.Size = new System.Drawing.Size(213, 50);
             this.imageComboBox.TabIndex = 5;
-            this.imageComboBox.SelectedIndexChanged += new System.EventHandler(this.imageComboBox_SelectedIndexChanged);
+            this.imageComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
             // 
             // MainForm
             // 

@@ -49,35 +49,21 @@ namespace Gw2Runes
         {
             ShowVersionInfo();
             LoadResources();
-            LoadDefaulValues();
-            
             SetupComboBoxes();
         }
 
         private void pBox_Paint(object sender, PaintEventArgs e)
         {
+            UpdateContentsFromControls();
             DrawPreview(e.Graphics);
         }
 
-        private void tbText_TextChanged(object sender, EventArgs e)
-        {
-            _runeTextString = tbRuneText.Text;
-
-            pBox.Refresh();
-        }
-
-        private void imageComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateContentsFromControls()
         {
             _rune = (imageComboBox.SelectedItem as ImageComboBoxItem).Image;
 
-            pBox.Refresh();
-        }
-
-        private void colorSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            _runeTextString = tbRuneText.Text;
             _captionBrush.Color = (colorSelectionComboBox.SelectedItem as ColorSelectionComboBoxItem).Color;
-
-            pBox.Refresh();
         }
 
         #endregion
