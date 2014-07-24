@@ -110,9 +110,9 @@ namespace Gw2Runes
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Caption";
+            this.label3.Text = "Rune Icon:";
             // 
             // myImageList
             // 
@@ -127,9 +127,9 @@ namespace Gw2Runes
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Text";
+            this.label2.Text = "Text:";
             // 
             // tbRuneText
             // 
@@ -146,9 +146,9 @@ namespace Gw2Runes
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Caption";
+            this.label1.Text = "Caption:";
             // 
             // saveFileDialog
             // 
