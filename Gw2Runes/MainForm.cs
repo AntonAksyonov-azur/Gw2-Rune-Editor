@@ -48,10 +48,10 @@ namespace Gw2Runes
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-                ShowVersionInfo();
-                LoadResources();
-                SetupComboBoxes();
-            }
+            ShowVersionInfo();
+            LoadResources();
+            SetupComboBoxes();
+        }
 
         private void pBox_Paint(object sender, PaintEventArgs e)
         {
@@ -119,7 +119,6 @@ namespace Gw2Runes
         private void LoadResources()
         {
             _backgroundImage = Resources.background;
-            _runeImage = Resources.rune;
 
             LoadFontFromResources();
 //            _privateFontCollection.AddFontFile(@"Resources\Fonts\Fritz_Quadrata_Cyrillic_Regular.ttf");
@@ -151,7 +150,17 @@ namespace Gw2Runes
 
         private void SetupComboBoxes()
         {
-            imageComboBox.ApplyImageList(myImageList);
+            // TODO Придумать получше
+            var imageList = new ImageList() {ImageSize = new Size(44, 44)};
+            foreach (var key in myImageList.Images.Keys)
+            {
+                var newKey = key.Substring("Superior_Rune_of_".Length,
+                    key.Length - ".png".Length - "Superior_Rune_of_".Length);
+
+                imageList.Images.Add(newKey, myImageList.Images[key]);
+            }
+            imageComboBox.ApplyImageList(imageList);
+            myImageList.Dispose();
 
             colorSelectionComboBox.Items.Add(
                 new ColorSelectionComboBoxItem("Superior", "Superior Rune of ", Color.FromArgb(220, 158, 37)));
@@ -192,6 +201,6 @@ namespace Gw2Runes
             _runeTextString = tbRuneText.Text;
         }
 
-        #endregion       
+        #endregion
     }
 }

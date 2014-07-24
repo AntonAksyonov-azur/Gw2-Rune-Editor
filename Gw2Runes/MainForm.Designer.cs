@@ -32,33 +32,23 @@ namespace Gw2Runes
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.pBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pBox = new System.Windows.Forms.PictureBox();
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.tbCaption = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.colorSelectionComboBox = new Gw2Runes.Components.ColorSelectionComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.imageComboBox = new Gw2Runes.Components.ImageComboBox();
             this.myImageList = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.tbRuneText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.colorSelectionComboBox = new Gw2Runes.Components.ColorSelectionComboBox();
-            this.imageComboBox = new Gw2Runes.Components.ImageComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pBox
-            // 
-            this.pBox.BackColor = System.Drawing.Color.Black;
-            this.pBox.Location = new System.Drawing.Point(13, 19);
-            this.pBox.Name = "pBox";
-            this.pBox.Size = new System.Drawing.Size(350, 600);
-            this.pBox.TabIndex = 0;
-            this.pBox.TabStop = false;
-            this.pBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pBox_Paint);
             // 
             // groupBox1
             // 
@@ -69,6 +59,16 @@ namespace Gw2Runes
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
+            // 
+            // pBox
+            // 
+            this.pBox.BackColor = System.Drawing.Color.Black;
+            this.pBox.Location = new System.Drawing.Point(13, 19);
+            this.pBox.Name = "pBox";
+            this.pBox.Size = new System.Drawing.Size(350, 600);
+            this.pBox.TabIndex = 0;
+            this.pBox.TabStop = false;
+            this.pBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pBox_Paint);
             // 
             // btnSaveAs
             // 
@@ -105,6 +105,17 @@ namespace Gw2Runes
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Content";
             // 
+            // colorSelectionComboBox
+            // 
+            this.colorSelectionComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.colorSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorSelectionComboBox.FormattingEnabled = true;
+            this.colorSelectionComboBox.Location = new System.Drawing.Point(122, 104);
+            this.colorSelectionComboBox.Name = "colorSelectionComboBox";
+            this.colorSelectionComboBox.Size = new System.Drawing.Size(100, 21);
+            this.colorSelectionComboBox.TabIndex = 8;
+            this.colorSelectionComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -114,13 +125,89 @@ namespace Gw2Runes
             this.label3.TabIndex = 7;
             this.label3.Text = "Rune Icon:";
             // 
+            // imageComboBox
+            // 
+            this.imageComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.imageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.imageComboBox.FormattingEnabled = true;
+            this.imageComboBox.IntegralHeight = false;
+            this.imageComboBox.ItemHeight = 44;
+            this.imageComboBox.Location = new System.Drawing.Point(9, 32);
+            this.imageComboBox.MaxDropDownItems = 6;
+            this.imageComboBox.Name = "imageComboBox";
+            this.imageComboBox.Size = new System.Drawing.Size(213, 50);
+            this.imageComboBox.TabIndex = 5;
+            this.imageComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
+            // 
             // myImageList
             // 
             this.myImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("myImageList.ImageStream")));
             this.myImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.myImageList.Images.SetKeyName(0, "run1.jpg");
-            this.myImageList.Images.SetKeyName(1, "runa.jpg");
-            this.myImageList.Images.SetKeyName(2, "rune.jpg");
+            this.myImageList.Images.SetKeyName(0, "Superior_Rune_of_Altruism.png");
+            this.myImageList.Images.SetKeyName(1, "Superior_Rune_of_Antitoxin.png");
+            this.myImageList.Images.SetKeyName(2, "Superior_Rune_of_Balthazar.png");
+            this.myImageList.Images.SetKeyName(3, "Superior_Rune_of_Divinity.png");
+            this.myImageList.Images.SetKeyName(4, "Superior_Rune_of_Dwayna.png");
+            this.myImageList.Images.SetKeyName(5, "Superior_Rune_of_Exuberance.png");
+            this.myImageList.Images.SetKeyName(6, "Superior_Rune_of_Grenth.png");
+            this.myImageList.Images.SetKeyName(7, "Superior_Rune_of_Hoelbrak.png");
+            this.myImageList.Images.SetKeyName(8, "Superior_Rune_of_Infiltration.png");
+            this.myImageList.Images.SetKeyName(9, "Superior_Rune_of_Lyssa.png");
+            this.myImageList.Images.SetKeyName(10, "Superior_Rune_of_Melandru.png");
+            this.myImageList.Images.SetKeyName(11, "Superior_Rune_of_Mercy.png");
+            this.myImageList.Images.SetKeyName(12, "Superior_Rune_of_Orr.png");
+            this.myImageList.Images.SetKeyName(13, "Superior_Rune_of_Perplexity.png");
+            this.myImageList.Images.SetKeyName(14, "Superior_Rune_of_Rage.png");
+            this.myImageList.Images.SetKeyName(15, "Superior_Rune_of_Resistance.png");
+            this.myImageList.Images.SetKeyName(16, "Superior_Rune_of_Sanctuary.png");
+            this.myImageList.Images.SetKeyName(17, "Superior_Rune_of_Scavenging.png");
+            this.myImageList.Images.SetKeyName(18, "Superior_Rune_of_Speed.png");
+            this.myImageList.Images.SetKeyName(19, "Superior_Rune_of_Strength.png");
+            this.myImageList.Images.SetKeyName(20, "Superior_Rune_of_Svanir.png");
+            this.myImageList.Images.SetKeyName(21, "Superior_Rune_of_the_Adventurer.png");
+            this.myImageList.Images.SetKeyName(22, "Superior_Rune_of_the_Afflicted.png");
+            this.myImageList.Images.SetKeyName(23, "Superior_Rune_of_the_Air.png");
+            this.myImageList.Images.SetKeyName(24, "Superior_Rune_of_the_Aristocracy.png");
+            this.myImageList.Images.SetKeyName(25, "Superior_Rune_of_the_Baelfire.png");
+            this.myImageList.Images.SetKeyName(26, "Superior_Rune_of_the_Brawler.png");
+            this.myImageList.Images.SetKeyName(27, "Superior_Rune_of_the_Centaur.png");
+            this.myImageList.Images.SetKeyName(28, "Superior_Rune_of_the_Citadel.png");
+            this.myImageList.Images.SetKeyName(29, "Superior_Rune_of_the_Dolyak.png");
+            this.myImageList.Images.SetKeyName(30, "Superior_Rune_of_the_Eagle.png");
+            this.myImageList.Images.SetKeyName(31, "Superior_Rune_of_the_Earth.png");
+            this.myImageList.Images.SetKeyName(32, "Superior_Rune_of_the_Elementalist.png");
+            this.myImageList.Images.SetKeyName(33, "Superior_Rune_of_the_Engineer.png");
+            this.myImageList.Images.SetKeyName(34, "Superior_Rune_of_the_Fire.png");
+            this.myImageList.Images.SetKeyName(35, "Superior_Rune_of_the_Flame_Legion.png");
+            this.myImageList.Images.SetKeyName(36, "Superior_Rune_of_the_Flock.png");
+            this.myImageList.Images.SetKeyName(37, "Superior_Rune_of_the_Forgeman.png");
+            this.myImageList.Images.SetKeyName(38, "Superior_Rune_of_the_Golemancer.png");
+            this.myImageList.Images.SetKeyName(39, "Superior_Rune_of_the_Grove.png");
+            this.myImageList.Images.SetKeyName(40, "Superior_Rune_of_the_Guardian.png");
+            this.myImageList.Images.SetKeyName(41, "Superior_Rune_of_the_Ice.png");
+            this.myImageList.Images.SetKeyName(42, "Superior_Rune_of_the_Krait.png");
+            this.myImageList.Images.SetKeyName(43, "Superior_Rune_of_the_Lich.png");
+            this.myImageList.Images.SetKeyName(44, "Superior_Rune_of_the_Mad_King.png");
+            this.myImageList.Images.SetKeyName(45, "Superior_Rune_of_the_Mesmer.png");
+            this.myImageList.Images.SetKeyName(46, "Superior_Rune_of_the_Monk.png");
+            this.myImageList.Images.SetKeyName(47, "Superior_Rune_of_the_Necromancer.png");
+            this.myImageList.Images.SetKeyName(48, "Superior_Rune_of_the_Nightmare.png");
+            this.myImageList.Images.SetKeyName(49, "Superior_Rune_of_the_Ogre.png");
+            this.myImageList.Images.SetKeyName(50, "Superior_Rune_of_the_Pack.png");
+            this.myImageList.Images.SetKeyName(51, "Superior_Rune_of_the_Privateer.png");
+            this.myImageList.Images.SetKeyName(52, "Superior_Rune_of_the_Ranger.png");
+            this.myImageList.Images.SetKeyName(53, "Superior_Rune_of_the_Rata_Sum.png");
+            this.myImageList.Images.SetKeyName(54, "Superior_Rune_of_the_Scholar.png");
+            this.myImageList.Images.SetKeyName(55, "Superior_Rune_of_the_Sunless.png");
+            this.myImageList.Images.SetKeyName(56, "Superior_Rune_of_the_Thief.png");
+            this.myImageList.Images.SetKeyName(57, "Superior_Rune_of_the_Traveler.png");
+            this.myImageList.Images.SetKeyName(58, "Superior_Rune_of_the_Trooper.png");
+            this.myImageList.Images.SetKeyName(59, "Superior_Rune_of_the_Undead.png");
+            this.myImageList.Images.SetKeyName(60, "Superior_Rune_of_the_Warrior.png");
+            this.myImageList.Images.SetKeyName(61, "Superior_Rune_of_the_Water.png");
+            this.myImageList.Images.SetKeyName(62, "Superior_Rune_of_the_Wurm.png");
+            this.myImageList.Images.SetKeyName(63, "Superior_Rune_of_Tormenting.png");
+            this.myImageList.Images.SetKeyName(64, "Superior_Rune_of_Vampirism.png");
             // 
             // label2
             // 
@@ -157,30 +244,6 @@ namespace Gw2Runes
                 "";
             this.saveFileDialog.FilterIndex = 2;
             // 
-            // colorSelectionComboBox
-            // 
-            this.colorSelectionComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.colorSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.colorSelectionComboBox.FormattingEnabled = true;
-            this.colorSelectionComboBox.Location = new System.Drawing.Point(122, 104);
-            this.colorSelectionComboBox.Name = "colorSelectionComboBox";
-            this.colorSelectionComboBox.Size = new System.Drawing.Size(100, 21);
-            this.colorSelectionComboBox.TabIndex = 8;
-            this.colorSelectionComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
-            // 
-            // imageComboBox
-            // 
-            this.imageComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.imageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.imageComboBox.FormattingEnabled = true;
-            this.imageComboBox.ImageList = this.myImageList;
-            this.imageComboBox.ItemHeight = 44;
-            this.imageComboBox.Location = new System.Drawing.Point(9, 32);
-            this.imageComboBox.Name = "imageComboBox";
-            this.imageComboBox.Size = new System.Drawing.Size(213, 50);
-            this.imageComboBox.TabIndex = 5;
-            this.imageComboBox.SelectedIndexChanged += new System.EventHandler(this.RefreshPictureBox);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,8 +257,8 @@ namespace Gw2Runes
             this.Name = "MainForm";
             this.Text = "GW 2 Rune Editor";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
