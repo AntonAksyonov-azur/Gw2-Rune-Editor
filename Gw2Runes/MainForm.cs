@@ -154,8 +154,9 @@ namespace Gw2Runes
             var imageList = new ImageList() {ImageSize = new Size(44, 44)};
             foreach (var key in myImageList.Images.Keys)
             {
-                var newKey = key.Substring("Superior_Rune_of_".Length,
-                    key.Length - ".png".Length - "Superior_Rune_of_".Length);
+                var newKey = key.Substring(
+                    key.LastIndexOf("_") + 1,
+                    key.Length - ".png".Length - key.LastIndexOf("_") - 1);
 
                 imageList.Images.Add(newKey, myImageList.Images[key]);
             }
